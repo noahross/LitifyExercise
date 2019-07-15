@@ -1,0 +1,10 @@
+<aura:component description="CaseHierarchyMain" controller="CaseHierarchyController">
+	<aura:attribute type="Id" name="caseId" />
+	<aura:attribute type="Legal_Case__c" name="legalCase" />
+	<aura:attribute type="Association__c[]" name="associations" default="[]" />
+	<aura:attribute type="Member_Role__c[]" name="roles" default="[]" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<div></div>
+</aura:component>
