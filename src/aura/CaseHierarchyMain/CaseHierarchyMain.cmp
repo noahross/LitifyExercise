@@ -1,10 +1,28 @@
-<aura:component description="CaseHierarchyMain" controller="CaseHierarchyController">
-	<aura:attribute type="Id" name="caseId" />
-	<aura:attribute type="Legal_Case__c" name="legalCase" />
-	<aura:attribute type="Association__c[]" name="associations" default="[]" />
-	<aura:attribute type="Member_Role__c[]" name="roles" default="[]" />
+<aura:component description="CaseHierarchyMain" controller="CaseHierarchyController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+	<aura:attribute name="recordId" type="String" />
+	<aura:attribute type="Association__c[]" name="associations" />
+	<!--<aura:attribute type="Object" name="roles" />-->
+	<aura:attribute name="items" type="Object" access="PRIVATE" />
+	<aura:attribute name="editPanel" type="Aura.Component[]" />
 
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler name="caseHierarchyChange" event="c:CaseHierarchyChange" action="{!c.changeHierarchy}" />
 
-	<div></div>
+	<div class="slds-grid" >
+		<div class="slds-card slds-max-large-size--5-of-12 slds-col--padded">
+			<lightning:card footer="" title="Case Hierarchy">
+				<lightning:tree items="{!v.items}" header="" onselect="{!c.selectItem}" />
+			</lightning:card>
+		</div>
+
+		<div class="slds-card slds-max-large-size--5-of-12 slds-col--padded" >
+			{!v.editPanel}
+		</div>
+	</div>
+	<div class="slds-col--padded" >
+		<div class="slds-no-flex">
+			<lightning:button label="Add Item" class="slds-button_brand" onclick="{!c.newRecord}"/>
+		</div>
+	</div>
+
 </aura:component>

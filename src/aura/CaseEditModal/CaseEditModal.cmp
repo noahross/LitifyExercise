@@ -1,0 +1,19 @@
+<!--
+ - Created by neoro on 7/20/2019.
+ -->
+
+<aura:component description="CaseEditModal" controller="CaseHierarchyController">
+    <aura:attribute name="objectApiName" type="String" default="Member_Role__c"/>
+    <aura:attribute name="fields" type="String[]" default="Name,Role__c,Member__c,Association__c" />
+    <aura:attribute name="recordId" type="String" />
+
+    <aura:registerEvent name="caseHierarchyChange" type="c:CaseHierarchyChange" />
+
+<!--    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />-->
+
+    <div>
+        <lightning:recordForm mode="edit" recordId="{!v.recordId}" objectApiName="{!v.objectApiName}" columns="1"
+                              layoutType="Compact" fields="{!v.fields}" oncancel="{!c.closeEditPanel}"
+                              onsuccess="{!c.changeHierarchy}"/>
+    </div>
+</aura:component>

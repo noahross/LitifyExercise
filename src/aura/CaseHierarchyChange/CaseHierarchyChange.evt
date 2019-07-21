@@ -1,0 +1,8 @@
+<!--
+ - Created by neoro on 7/20/2019.
+ -->
+
+<aura:event type="APPLICATION" description="CaseHierarchyChange">
+    <aura:attribute name="changeType" type="String" />
+    <aura:attribute name="record" type="Object" />
+</aura:event>

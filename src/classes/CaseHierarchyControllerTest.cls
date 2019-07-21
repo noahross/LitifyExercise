@@ -17,9 +17,7 @@ private class CaseHierarchyControllerTest {
         Test.stopTest();
 
         // Assert
-        System.assertEquals(null, main.legalCase.Id, 'constructor returned Legal Case.');
         System.assert(main.associations.isEmpty(), 'Association list not empty.');
-        System.assert(main.memberRoles.isEmpty(), 'Member Roles list not empty.');
     }
 
     @IsTest
@@ -39,16 +37,11 @@ private class CaseHierarchyControllerTest {
         Test.stopTest();
 
         // Assert
-        System.assertEquals(caseId, main.legalCase.Id, 'constructor returned erroneous Legal Case.');
         System.assert(!main.associations.isEmpty(), 'Association list is empty.');
-        System.assert(!main.memberRoles.isEmpty(), 'Member Roles list is empty.');
 
         for(Association__c association : main.associations) {
             System.assertEquals(caseId, association.Case__c, 'Association related to different Legal Case.');
-        }
-
-        for(Member_Role__c memberRole : main.memberRoles) {
-            System.assertEquals(caseId, memberRole.Association__r.Case__c, 'Role related to different Legal Case.');
+            System.assert(!association.Member_Roles__r.isEmpty(), 'No roles returned with association.');
         }
     }
 
