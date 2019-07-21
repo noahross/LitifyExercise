@@ -1,6 +1,6 @@
 @IsTest
 public with sharing class UtilityTest {
-    @Istest
+    @IsTest
     private static void validateSetAndMapetize() {
         Map<String,Account> nameToAccountMap = new Map<String,Account>();
         nameToAccountMap.put('Test Account',new Account(Name = 'Test Account'));
@@ -20,7 +20,7 @@ public with sharing class UtilityTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void validateAddLeadingZeroes() {
         System.assertEquals('0000352',Utility.addLeadingZeroes(7, '352'));
     }

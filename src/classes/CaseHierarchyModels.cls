@@ -7,7 +7,6 @@ public with sharing class CaseHierarchyModels {
             System.debug('constructor on Main called.');
             if(caseId != null) {
                 this.associations = CaseServices.getRelatedAssociationsWithRoles(caseId);
-                System.debug(associations);
             }
         }
 

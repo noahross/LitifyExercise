@@ -55,14 +55,10 @@ private class CaseServicesTest {
                 WHERE Association__c IN :legalCase.Associations__r
         ];
 
-        System.debug(expectedMemberRoles.size());
-
         // Act
         Test.startTest();
 
         List<Member_Role__c> actualMemberRoles = CaseServices.getRelatedMemberRoles(legalCase.Id);
-        System.debug(actualMemberRoles.size());
-        System.debug(actualMemberRoles);
 
         Test.stopTest();
 

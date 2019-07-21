@@ -1,21 +1,20 @@
 <aura:component description="CaseHierarchyMain" controller="CaseHierarchyController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
 	<aura:attribute name="recordId" type="String" />
 	<aura:attribute type="Association__c[]" name="associations" />
-	<!--<aura:attribute type="Object" name="roles" />-->
 	<aura:attribute name="items" type="Object" access="PRIVATE" />
 	<aura:attribute name="editPanel" type="Aura.Component[]" />
 
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 	<aura:handler name="caseHierarchyChange" event="c:CaseHierarchyChange" action="{!c.changeHierarchy}" />
 
-	<div class="slds-grid" >
-		<div class="slds-card slds-max-large-size--5-of-12 slds-col--padded">
+	<div class="slds-grid slds-col--padded" >
+		<div class="slds-card slds-max-large-size--6-of-12 slds-col--padded">
 			<lightning:card footer="" title="Case Hierarchy">
 				<lightning:tree items="{!v.items}" header="" onselect="{!c.selectItem}" />
 			</lightning:card>
 		</div>
 
-		<div class="slds-card slds-max-large-size--5-of-12 slds-col--padded" >
+		<div class="slds-card slds-max-large-size--6-of-12 slds-col--padded" >
 			{!v.editPanel}
 		</div>
 	</div>
