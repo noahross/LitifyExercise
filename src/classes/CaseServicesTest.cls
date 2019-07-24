@@ -32,6 +32,45 @@ private class CaseServicesTest {
     }
 
     @IsTest
+    private static void getRelatedAssociationsWithRoles_EmptyCaseId_ReturnEmptyList() {
+        // Arrange
+        Id caseId = null;
+        // Act
+        Test.startTest();
+
+        List<Association__c> associations = CaseServices.getRelatedAssociationsWithRoles(caseId);
+
+        Test.stopTest();
+
+        // Assert
+        System.assert(associations.isEmpty());
+    }
+
+    @IsTest
+    private static void getRelatedAssociationsWithRoles_ValidCaseId_ReturnRelatedAssociationsAndRoles() {
+        // Arrange
+        Legal_Case__c legalCase = [SELECT Id, (SELECT Id FROM Associations__r) FROM Legal_Case__c LIMIT 1];
+        List<Member_Role__c> expectedMemberRoles = [SELECT Id FROM Member_Role__c WHERE Association__c IN :legalCase.Associations__r];
+
+        // Act
+        Test.startTest();
+
+        List<Association__c> associations = CaseServices.getRelatedAssociationsWithRoles(legalCase.Id);
+        List<Member_Role__c> actualMemberRoles = new List<Member_Role__c>();
+        for(Association__c association : associations) {
+            actualMemberRoles.addAll(association.Member_Roles__r);
+        }
+
+        Test.stopTest();
+
+        //Assert
+        System.assertEquals(legalCase.Associations__r.size(), associations.size(),
+                'Returned incorrect number of associations.');
+        System.assertEquals(expectedMemberRoles.size(), actualMemberRoles.size(),
+                'Returned incorrect number of member roles.');
+    }
+
+    @IsTest
     private static void getRelatedMemberRoles_EmptyCaseId_ReturnEmptyList() {
         // Arrange
         Id caseId = null;

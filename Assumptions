@@ -1,0 +1,4 @@
+An account can be related to more than one case
+A contact can be related to more than one case
+An account association can be related to a case before any member roles relate to that association
+No new contact or account UI is needed, as Lightning Experience makes that simple
